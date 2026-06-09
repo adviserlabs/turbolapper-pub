@@ -455,7 +455,7 @@ SELECT county_name, state_fips,
        ROUND(wages_per_hh) AS wages_per_hh,
        ROUND(gdp_per_hh - wages_per_hh) AS gap,
        dominant_sector
-FROM semantic.county_hh
+FROM semantic.county_all_flags
 WHERE year = 2022 AND gdp_per_hh IS NOT NULL AND wages_per_hh IS NOT NULL
 ORDER BY gap DESC
 LIMIT 15
