@@ -391,13 +391,14 @@ ORDER BY pct_government DESC
 
 **Q6.1** Which counties are "left behind" — declining GDP growth AND losing population?
 ```sql
-SELECT county_name, state_fips,
-       ROUND(yoy_gdp_growth_pct, 1) AS gdp_growth_pct,
-       ROUND(yoy_pop_growth_pct, 2) AS pop_growth_pct,
-       dominant_sector
-FROM semantic.county_all_flags
-WHERE year = 2022 AND is_left_behind IS TRUE
-ORDER BY yoy_gdp_growth_pct ASC
+SELECT f.county_name, f.state_fips,
+       ROUND(u.yoy_gdp_growth_pct, 1) AS gdp_growth_pct,
+       ROUND(u.yoy_pop_growth_pct, 2) AS pop_growth_pct,
+       f.dominant_sector
+FROM semantic.county_all_flags f
+JOIN semantic.county_unified u ON u.fips = f.fips AND u.year = f.year
+WHERE f.year = 2022 AND f.is_left_behind IS TRUE
+ORDER BY u.yoy_gdp_growth_pct ASC
 LIMIT 20
 ```
 
