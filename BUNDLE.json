@@ -1,0 +1,84 @@
+{
+  "bundle": "us-county-economics",
+  "version": "0.1.0",
+  "title": "US County Economics",
+  "description": "County-level GDP, personal income, AGI/wages, population, migration, industry sector shares, and household-normalized metrics for all ~3,200 US counties. Pre-computed boolean flags encode answers to thousands of common economic questions.",
+  "sources": [
+    {
+      "id": "bea_county_gdp",
+      "name": "BEA CAGDP2 — GDP by County and Industry",
+      "url": "https://apps.bea.gov/regional/zip/CAGDP2.zip",
+      "years": "2001–2024",
+      "geo_count": 3126,
+      "tables": ["raw.bea_cagdp2", "curated.bea_county_gdp", "semantic.county_gdp", "semantic.county_industry_flags"]
+    },
+    {
+      "id": "bea_county_income",
+      "name": "BEA CAINC1 — Personal Income, Population, Per-Capita Income",
+      "url": "https://apps.bea.gov/regional/zip/CAINC1.zip",
+      "years": "1969–2024",
+      "geo_count": 3148,
+      "tables": ["raw.bea_cainc1", "curated.bea_county_income", "semantic.county_income"]
+    },
+    {
+      "id": "irs_county_soi",
+      "name": "IRS Statistics of Income — County AGI and Wages",
+      "url": "https://www.irs.gov/statistics/soi-tax-stats-county-data",
+      "years": "2015–2022",
+      "geo_count": 3203,
+      "tables": ["raw.irs_soi", "curated.irs_county_soi", "semantic.county_taxes"]
+    },
+    {
+      "id": "census_county_population",
+      "name": "Census PEP — County Population Estimates and Migration",
+      "url": "https://www.census.gov/programs-surveys/popest/data/data-sets.html",
+      "years": "2020–2024",
+      "geo_count": 3143,
+      "tables": ["raw.census_pep", "curated.census_county_pop", "semantic.county_population", "semantic.county_migration"]
+    }
+  ],
+  "derived_tables": [
+    {
+      "id": "county_unified",
+      "table": "semantic.county_unified",
+      "description": "Cross-source numeric metrics per county-year. Primary join surface.",
+      "years": "1969–2024",
+      "geo_count": 3253
+    },
+    {
+      "id": "county_hh",
+      "table": "semantic.county_hh",
+      "description": "Household-normalized income and productivity metrics. Uses IRS filing units as household proxy.",
+      "years": "1969–2024"
+    },
+    {
+      "id": "county_flags",
+      "table": "semantic.county_flags",
+      "description": "Core boolean flags: size, income, structure, growth, composite situations.",
+      "flag_count": 41
+    },
+    {
+      "id": "county_all_flags",
+      "table": "semantic.county_all_flags",
+      "description": "Master view: all flags + metrics from all sources in one 96-column row per county-year. Best starting point for LLM queries.",
+      "flag_count": 55,
+      "metric_count": 41
+    }
+  ],
+  "best_year_for_analysis": 2022,
+  "join_key": "fips (5-digit VARCHAR, zero-padded) + year (INTEGER)",
+  "geo_levels": ["county"],
+  "llm_prompt_hint": "Use semantic.county_all_flags for most county questions. Join key is fips (5-digit string) and year. All boolean flags are NULL (not false) when data is unavailable — use IS TRUE not = TRUE. Best year for cross-source analysis is 2022. See docs/SCHEMA_REFERENCE.md for full column descriptions and docs/GEO_CATALOG.md for FIPS lookup patterns.",
+  "docs": {
+    "schema": "docs/SCHEMA_REFERENCE.md",
+    "geo": "docs/GEO_CATALOG.md",
+    "test_questions": "docs/TEST_QUESTIONS.md",
+    "known_unknowns": "docs/KNOWN_UNKNOWNS.md"
+  },
+  "license": "CC0-1.0",
+  "data_licenses": {
+    "BEA": "Public domain — US Government work",
+    "IRS": "Public domain — US Government work",
+    "Census": "Public domain — US Government work"
+  }
+}
