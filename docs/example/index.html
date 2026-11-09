@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US county economics study outline</title>
+  <meta name="description" content="An outline for a US county economics study using the public bundle in this repository and turbolapper on a Mac. Questions and sources, with findings left to the run.">
+  <link rel="canonical" href="https://adviserlabs.github.io/turbolapper-pub/example/">
+  <meta property="og:title" content="US county economics study outline">
+  <meta property="og:description" content="An outline for a US county economics study using the public bundle in this repository and turbolapper on a Mac. Questions and sources, with findings left to the run.">
+  <meta property="og:url" content="https://adviserlabs.github.io/turbolapper-pub/example/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="turbolapper">
+  <meta property="og:image" content="https://turbolapper.com/assets/img/og-card.png">
+  <meta property="og:image:alt" content="turbolapper, local analytics for Mac">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="US county economics study outline">
+  <meta name="twitter:description" content="An outline for a US county economics study using the public bundle in this repository and turbolapper on a Mac. Questions and sources, with findings left to the run.">
+  <meta name="twitter:image" content="https://turbolapper.com/assets/img/og-card.png">
+  <meta name="theme-color" content="#084740">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://adviserlabs.github.io/turbolapper-pub/#organization",
+        "name": "Adviser Labs",
+        "url": "https://turbolapper.com",
+        "brand": {
+          "@type": "Brand",
+          "name": "turbolapper"
+        },
+        "sameAs": [
+          "https://turbolapper.com",
+          "https://github.com/adviserlabs/turbolapper-pub"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://adviserlabs.github.io/turbolapper-pub/#software",
+        "name": "turbolapper",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "macOS 26 or later (turbolapper Medium) or macOS 27 with Apple Intelligence (turbolapper AFM)",
+        "url": "https://turbolapper.com",
+        "downloadUrl": "https://turbolapper.com/download",
+        "description": "turbolapper is a Mac-native local analytics app from Adviser Labs. You drop in a data file on your Mac. The app profiles the file, builds questions from it, and turns the answers into a slide deck.",
+        "publisher": {
+          "@id": "https://adviserlabs.github.io/turbolapper-pub/#organization"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://adviserlabs.github.io/turbolapper-pub/example/#faq",
+        "url": "https://adviserlabs.github.io/turbolapper-pub/example/",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does this outline contain?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This outline lists a question, the public sources in the US county economics bundle, and the local analysis steps. Record the findings from the run you do in turbolapper."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which year should a first county study use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use 2022 for a first pass. That year overlaps BEA GDP, BEA income, and IRS tax data in this bundle. Census population and migration cover 2020 to 2024."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where are the questions and the columns written down?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The questions and their reference SQL are in TEST_QUESTIONS.md. Column definitions are in SCHEMA_REFERENCE.md. Open gaps are in KNOWN_UNKNOWNS.md."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="brand"><a href="../">turbolapper method</a></p>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="../">Method</a></li>
+          <li><a href="../scholarship/">Scholarship</a></li>
+          <li><a href="./" aria-current="page">Example study</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="content">
+    <div class="wrap">
+      <h1>Study outline: US county economics</h1>
+      <p class="lede">This outline is a data study you can run with <a href="https://turbolapper.com">turbolapper</a> on a Mac, using the public county bundle documented in this repository. It states the question, the data, and the analysis path. Record the findings from the run you do in turbolapper.</p>
+      <p>The five steps match the <a href="../">turbolapper method</a>. Applicants for the <a href="../scholarship/">2027 scholarship</a> can use this shape. Details and deadline: see <a href="https://turbolapper.com">turbolapper.com</a>.</p>
+
+      <h2>Question</h2>
+      <p>Pick one decision and write it in a sentence. The <a href="../TEST_QUESTIONS.md">test question canon</a> lists questions a study can start from. Three that show the range:</p>
+      <ul class="links">
+        <li>Which 10 counties had the fastest GDP growth in 2022?</li>
+        <li>Which counties in Texas are boomtowns? In this bundle, a boomtown is a county in the top quartile of both GDP growth and population growth for that year.</li>
+        <li>Which counties are energy dominant? The published flag treats mining and energy above 25 percent of county GDP as energy dominant.</li>
+      </ul>
+      <p>Answer one of these, or a question of your own, with the file analyzed in turbolapper.</p>
+
+      <h2>Data</h2>
+      <p>Four public-domain US government sources feed the county tables. Counts below are the ones recorded in this repository.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Sources in the US county economics bundle</caption>
+          <thead>
+            <tr>
+              <th scope="col">Source</th>
+              <th scope="col">Dataset</th>
+              <th scope="col">Years</th>
+              <th scope="col">Counties</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BEA</td>
+              <td>CAGDP2, GDP by county and industry</td>
+              <td>2001 to 2024</td>
+              <td>3,126</td>
+            </tr>
+            <tr>
+              <td>BEA</td>
+              <td>CAINC1, personal income, population, and per-capita income</td>
+              <td>1969 to 2024</td>
+              <td>3,148</td>
+            </tr>
+            <tr>
+              <td>IRS</td>
+              <td>Statistics of Income, AGI and wages by county</td>
+              <td>2015 to 2022</td>
+              <td>3,203</td>
+            </tr>
+            <tr>
+              <td>Census Bureau</td>
+              <td>Population Estimates Program, population and migration</td>
+              <td>2020 to 2024</td>
+              <td>3,143</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Use 2022 for a first pass. That year overlaps BEA GDP, BEA income, and IRS tax data. Census population and migration cover 2020 to 2024. The wide table <code>semantic.county_all_flags</code> holds 3,253 counties and county-equivalents. Household metrics divide income and GDP by IRS filing units, a household proxy. A boolean flag is NULL when the series for that county-year is missing.</p>
+      <p>The <a href="../GEO_CATALOG.md">geography catalog</a> lists FIPS codes. Travis County, Texas is <code>48453</code>. Los Angeles County, California is <code>06037</code>. The <a href="../SCHEMA_REFERENCE.md">schema reference</a> defines every column. The repository README describes the DuckDB file the build produces. The build pipeline is under <code>sources/</code>.</p>
+      <p>The schema reference also documents BLS consumer price and average retail price tables for metro areas. Those tables use BLS area codes. County tables join on FIPS, so the price tables stay in their own geography.</p>
+
+      <h2>Local analysis on your Mac</h2>
+      <ol class="steps">
+        <li>
+          <h3>Install turbolapper</h3>
+          <p>Use the <a href="https://turbolapper.com/download">turbolapper download page</a>. AFM needs macOS 27 with Apple Intelligence. Medium needs macOS 26 or later and 16 GB. The dataset stays on the Mac in both editions.</p>
+        </li>
+        <li>
+          <h3>Bring the county file onto the Mac</h3>
+          <p>Keep the source name and the vintage of the file next to the question.</p>
+        </li>
+        <li>
+          <h3>Prepare documented views</h3>
+          <p>Clean names and joins once. <code>semantic.county_all_flags</code> is the documented starting point for most county questions. Join on <code>fips</code> and <code>year</code>. The technology page calls this prep heavy, run light: <a href="https://turbolapper.com/technology">how Local Analytics works</a>.</p>
+        </li>
+        <li>
+          <h3>Ask the question in turbolapper</h3>
+          <p>Follow-up questions stay on the flat monthly or annual price. Starter is free, with a data cap. See <a href="https://turbolapper.com/pricing">turbolapper pricing</a>.</p>
+        </li>
+        <li>
+          <h3>Read the confidence label</h3>
+          <p>turbolapper uses Verified, Estimated, and Directional. When coverage is thin, keep that label with the claim.</p>
+        </li>
+      </ol>
+
+      <h2>Findings</h2>
+      <p>Write each claim in a sentence. Include the county, the year, the metric, and the confidence label. Name the source table. Where a flag is NULL, say the series is missing.</p>
+      <p>The <a href="../KNOWN_UNKNOWNS.md">known unknowns</a> list topics this bundle leaves open: poverty rates, unemployment, rural and urban codes, cost of living, housing affordability, and education attainment. A finished study names those limits when the question touches them.</p>
+
+      <h2>Publish</h2>
+      <p>A finished study carries the question, the sources and years, the turbolapper edition, a note that the analysis ran on a Mac, the findings with confidence labels, and the questions the tables leave open. The published product path ends in a slide deck. Read that path on the <a href="https://turbolapper.com/technology">turbolapper technology page</a>.</p>
+
+      <h2>Questions</h2>
+      <div class="faq">
+        <h3>What does this outline contain?</h3>
+        <p>This outline lists a question, the public sources in the US county economics bundle, and the local analysis steps. Record the findings from the run you do in turbolapper.</p>
+      </div>
+      <div class="faq">
+        <h3>Which year should a first county study use?</h3>
+        <p>Use 2022 for a first pass. That year overlaps BEA GDP, BEA income, and IRS tax data in this bundle. Census population and migration cover 2020 to 2024.</p>
+      </div>
+      <div class="faq">
+        <h3>Where are the questions and the columns written down?</h3>
+        <p>The questions and their reference SQL are in <a href="../TEST_QUESTIONS.md">TEST_QUESTIONS.md</a>. Column definitions are in <a href="../SCHEMA_REFERENCE.md">SCHEMA_REFERENCE.md</a>. Open gaps are in <a href="../KNOWN_UNKNOWNS.md">KNOWN_UNKNOWNS.md</a>.</p>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Adviser Labs publishes <a href="https://turbolapper.com">turbolapper</a>. Product facts follow turbolapper.com as read on 9 November 2026. County figures follow this repository.</p>
+      <p>This page is part of <a href="https://github.com/adviserlabs/turbolapper-pub">adviserlabs/turbolapper-pub</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

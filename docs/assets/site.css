@@ -1,0 +1,281 @@
+:root {
+  --ink: #1a1814;
+  --muted: #3f3a34;
+  --paper: #f7f5f0;
+  --card: #fffdf8;
+  --line: #d9d2c4;
+  --link: #084740;
+  --focus: #084740;
+  --measure: 40rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 1.0625rem/1.6 "Segoe UI", system-ui, sans-serif;
+}
+
+.skip {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 2;
+  padding: 0.55rem 0.8rem;
+  background: #fff;
+  color: var(--ink);
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.16em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.site-header {
+  border-top: 4px solid var(--link);
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .wrap,
+.wrap {
+  width: min(46rem, calc(100% - 2rem));
+  max-width: 100%;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.site-header .wrap {
+  padding: 0.85rem 0 0.35rem;
+}
+
+.brand {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.brand a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand a:hover {
+  text-decoration: underline;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin: 0.35rem 0 0.55rem;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+}
+
+nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+}
+
+main {
+  padding: 1.5rem 0 3rem;
+}
+
+main .wrap > * {
+  max-width: var(--measure);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  font-weight: 680;
+}
+
+h1 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.85rem, 1.2rem + 2.2vw, 2.45rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 2rem 0 0.6rem;
+  font-size: 1.35rem;
+}
+
+h3 {
+  margin: 1.25rem 0 0.35rem;
+  font-size: 1.08rem;
+}
+
+p,
+li {
+  overflow-wrap: anywhere;
+}
+
+.lede {
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.card,
+ol.steps > li,
+.faq {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.card,
+.faq {
+  padding: 0.9rem 1rem;
+  margin: 0.75rem 0;
+}
+
+ol.steps {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+}
+
+ol.steps > li {
+  margin: 0 0 0.75rem;
+  padding: 0.85rem 1rem 0.9rem 0.7rem;
+}
+
+ol.steps > li::marker {
+  color: var(--link);
+  font-weight: 700;
+}
+
+.links {
+  padding-left: 1.15rem;
+}
+
+.links li {
+  margin: 0.35rem 0;
+}
+
+.table-wrap {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  margin: 0.75rem 0 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+caption {
+  padding: 0.75rem 0.8rem 0.35rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+th,
+td {
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--line);
+}
+
+th {
+  font-weight: 700;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--card);
+  padding: 1.25rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.site-footer p {
+  margin: 0.35rem 0;
+}
+
+@media (min-width: 48rem) {
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  nav ul {
+    margin: 0;
+    justify-content: flex-end;
+  }
+
+  main {
+    padding-top: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .skip,
+  nav {
+    display: none;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+  }
+}

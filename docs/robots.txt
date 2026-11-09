@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adviserlabs.github.io/turbolapper-pub/sitemap.xml
