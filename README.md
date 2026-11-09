@@ -79,6 +79,20 @@ High-priority additions:
 3. BLS LAUS unemployment — unlocks `is_high_unemployment`
 4. BEA Regional Price Parities — unlocks cost-of-living adjusted comparisons
 
+## Public site (GitHub Pages)
+
+A short public site about the turbolapper method and the 2027 scholarship lives in `docs/` (`index.html`, `scholarship/`, `example/`). It is static HTML and CSS. `docs/.nojekyll` keeps GitHub Pages from running Jekyll, so the Markdown references in `docs/` stay files.
+
+This repository leaves the Pages setting unchanged. After review, an admin can publish the site:
+
+1. Open the repository on GitHub.
+2. Go to Settings, then Pages.
+3. Under Build and deployment, set the source to Deploy from a branch.
+4. Set the branch to `main` and the folder to `/docs`.
+5. Save.
+
+The site is then served at <https://adviserlabs.github.io/turbolapper-pub/>.
+
 ## License
 
 Build code: MIT. Data: public domain (US Government works — BEA, IRS, Census Bureau).
